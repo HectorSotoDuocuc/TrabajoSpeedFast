@@ -1,0 +1,46 @@
+package org.example;
+
+import java.util.List;
+
+public class PedidoEncomienda extends Pedidos{
+    private int peso;
+    private String tipodedocumento;
+
+    public PedidoEncomienda(int idpedido, String dirrecionEntrega, String tipodepedido, int peso, String tipodedocumento) {
+        super(idpedido, dirrecionEntrega, tipodepedido);
+        this.peso = peso;
+        this.tipodedocumento = tipodedocumento;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    public String getTipodedocumento() {
+        return tipodedocumento;
+    }
+
+    public void setTipodedocumento(String tipodedocumento) {
+        this.tipodedocumento = tipodedocumento;
+    }
+
+    @Override
+    public void asignarrepartidor(){
+    }
+    public void asignarrepartidor(List<Repartidor> listaDeRepartidores) {
+        for (Repartidor rep : listaDeRepartidores) {
+            if (rep.getPesomaxparallevarKL() > peso) {
+                super.asignarrepartidor(rep);
+                System.out.println("[PedidoEnComienda]");
+                System.out.println("Asignando Repartidor Que Aguente El Peso Del: " + tipodedocumento);
+                System.out.println("Pedido Asignado a: " + rep.getNombre());
+                return;
+            }
+        }
+        System.out.println("Lo Siento ningun Repartidor Aguante el peso de su Encomienda ");
+    }
+}
