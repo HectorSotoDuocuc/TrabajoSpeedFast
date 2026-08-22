@@ -17,23 +17,14 @@ public class Main {
        listaDeRepartidores.add(new Repartidor("Reverse FLash",false, 3, true, 10));
 
 
-       PedidoComida pedidoPizza = new PedidoComida(501,"los pinos 505, cerrillos", "Comida", "Donde Don Claudio");
-
-       pedidoPizza.asignarrepartidor();
-
-       pedidoPizza.asignarrepartidor(listaDeRepartidores);
-
-       PedidoEncomienda pedidoPaquete = new PedidoEncomienda(700,"rinconada 545, maipu","Encomienda", 6,"Paquete");
-
-       pedidoPaquete.asignarrepartidor();
-
-       pedidoPaquete.asignarrepartidor(listaDeRepartidores);
-
-       PedidoExpress pedidoSuperMercado = new PedidoExpress(542,"Comercio 2312, maipu","Supermercado Express");
-
-       pedidoSuperMercado.asignarrepartidor();
-
-       pedidoSuperMercado.asignarrepartidor(listaDeRepartidores);
-
+       PedidoComida pedido1 = new PedidoComida(453,"Las palmas 453","Comida",4,"carmen");
+       pedido1.mostrarResumen();
+       pedido1.calcularTiempoEntrega();
+       PedidoEncomienda pedido2 = new PedidoEncomienda(544,"las pergolas 432","Encomienda", 2, 11,"paquete" );
+       pedido2.mostrarResumen();
+       pedido2.calcularTiempoEntrega();
+       PedidoExpress pedido3 = new PedidoExpress(646,"grajales 5010" , "Express", 6);
+       pedido3.mostrarResumen();
+       pedido3.calcularTiempoEntrega();
     }
 }

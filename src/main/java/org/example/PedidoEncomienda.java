@@ -6,8 +6,8 @@ public class PedidoEncomienda extends Pedidos{
     private int peso;
     private String tipodedocumento;
 
-    public PedidoEncomienda(int idpedido, String dirrecionEntrega, String tipodepedido, int peso, String tipodedocumento) {
-        super(idpedido, dirrecionEntrega, tipodepedido);
+    public PedidoEncomienda(int idpedido, String dirrecionEntrega, String tipodepedido, int peso,int distanciakm, String tipodedocumento) {
+        super(idpedido, dirrecionEntrega, tipodepedido,distanciakm);
         this.peso = peso;
         this.tipodedocumento = tipodedocumento;
     }
@@ -42,5 +42,11 @@ public class PedidoEncomienda extends Pedidos{
             }
         }
         System.out.println("Lo Siento ningun Repartidor Aguante el peso de su Encomienda ");
+    }
+    @Override
+    protected void calcularTiempoEntrega(){
+        double decimal =  20+1.5*getDistanciakm();
+        int entero = (int) Math.round(decimal);
+        System.out.println("El tiempo estimado de entrega:" + entero + "min");
     }
 }

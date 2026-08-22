@@ -4,8 +4,8 @@ import java.util.List;
 
 public class PedidoComida extends Pedidos{
     private String nombreRestaurante;
-    public PedidoComida(int idpedido, String dirrecionEntrega, String tipodepedido, String nombreRestaurante) {
-        super(idpedido, dirrecionEntrega, tipodepedido);
+    public PedidoComida(int idpedido, String dirrecionEntrega, String tipodepedido,int distanciakm, String nombreRestaurante) {
+        super(idpedido, dirrecionEntrega, tipodepedido,distanciakm);
         this.nombreRestaurante = nombreRestaurante;
     }
 
@@ -34,5 +34,9 @@ public class PedidoComida extends Pedidos{
             }
         }
         System.out.println("Lo siento, No se Encuentra Ningun Repartidor con Mochila Termica");
+    }
+    @Override
+    protected void calcularTiempoEntrega(){
+        System.out.println("El tiempo estimado de entrega:" + (15+(2*getDistanciakm())) + "min");
     }
 }

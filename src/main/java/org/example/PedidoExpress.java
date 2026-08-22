@@ -3,8 +3,8 @@ package org.example;
 import java.util.List;
 
 public class PedidoExpress extends Pedidos{
-    public PedidoExpress(int idpedido, String dirrecionEntrega, String tipodepedido) {
-        super(idpedido, dirrecionEntrega, tipodepedido);
+    public PedidoExpress(int idpedido, String dirrecionEntrega, String tipodepedido, int distanciakm) {
+        super(idpedido, dirrecionEntrega, tipodepedido,distanciakm);
     }
     @Override
     public void asignarrepartidor(){
@@ -27,5 +27,12 @@ public class PedidoExpress extends Pedidos{
         }else {
             System.out.println("No se Encuentra Repartidores Disponibles");
         }
+    }
+    @Override
+    protected void calcularTiempoEntrega(){
+        int agregado =0;
+        if(getDistanciakm()> 5)
+            agregado = 5;
+        System.out.println("El tiempo estimado de entrega:" + (10 + agregado) + "min");
     }
 }
