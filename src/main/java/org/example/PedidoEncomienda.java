@@ -1,8 +1,7 @@
 package org.example;
+import java.util.*;
 
-import java.util.List;
-
-public class PedidoEncomienda extends Pedidos{
+public class PedidoEncomienda extends Pedido {
     private int peso;
     private String tipodedocumento;
 
@@ -29,13 +28,27 @@ public class PedidoEncomienda extends Pedidos{
     }
 
     @Override
-    public void asignarrepartidor(){
+    public void asignarrepartidor(String nombre, List<Repartidor> listaRepartidoresManual) {
+        boolean encontrado = false;
+        for (Repartidor rep : listaRepartidoresManual) {
+            if (rep.getNombre().equalsIgnoreCase(nombre)) {
+                encontrado = true;
+            if (rep.getPesomaxparallevarKL() > peso) {
+                super.asignarrepartidor(rep);
+                System.out.println("[PedidoEnComienda]");
+                System.out.println("Asignando Repartidor Que Aguente El Peso Del: " + tipodedocumento);
+                System.out.println("Pedido Asignado a: " + rep.getNombre());
+                return;
+            }System.out.println("El Repartidor Asignado No Aguanta el peso");
+            }
+        }if (!encontrado) {
+            System.out.println("EL Repartidor Asignado no existe en el sistema");
+        }
     }
     public void asignarrepartidor(List<Repartidor> listaDeRepartidores) {
         for (Repartidor rep : listaDeRepartidores) {
             if (rep.getPesomaxparallevarKL() > peso) {
                 super.asignarrepartidor(rep);
-                System.out.println("[PedidoEnComienda]");
                 System.out.println("Asignando Repartidor Que Aguente El Peso Del: " + tipodedocumento);
                 System.out.println("Pedido Asignado a: " + rep.getNombre());
                 return;

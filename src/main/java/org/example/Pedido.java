@@ -1,19 +1,26 @@
 package org.example;
 
-public abstract class Pedidos {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Pedido {
     private int idpedido;
     private String dirrecionEntrega;
     private String tipodepedido;
     private int distanciakm;
     private Repartidor repartidorAsignado;
+    protected String estadoPedido = null;
 
-    public Pedidos(int idpedido, String dirrecionEntrega, String tipodepedido, int distanciakm) {
+    public Pedido(int idpedido, String dirrecionEntrega, String tipodepedido, int distanciakm) {
         this.idpedido = idpedido;
         this.dirrecionEntrega = dirrecionEntrega;
         this.tipodepedido = tipodepedido;
         this.distanciakm = distanciakm;
         this.repartidorAsignado = null;
+        this.estadoPedido = null;
 
+    }
+    public void asignarrepartidor(String nombre, List<Repartidor> listaRepartidoresManual){
     }
 
     public int getIdpedido() {
@@ -22,26 +29,6 @@ public abstract class Pedidos {
 
     public void setIdpedido(int idpedido) {
         this.idpedido = idpedido;
-    }
-
-    public String getDirrecionEntrega() {
-        return dirrecionEntrega;
-    }
-
-    public void setDirrecionEntrega(String dirrecionEntrega) {
-        this.dirrecionEntrega = dirrecionEntrega;
-    }
-
-    public String getTipodepedido() {
-        return tipodepedido;
-    }
-
-    public void setTipodepedido(String tipodepedido) {
-        this.tipodepedido = tipodepedido;
-    }
-
-    public void asignarrepartidor(){
-
     }
 
     public int getDistanciakm() {
@@ -55,6 +42,9 @@ public abstract class Pedidos {
     public void asignarrepartidor(Repartidor repartidor) {
         this.repartidorAsignado = repartidor;
     }
+    public void cambiarEstado(String nuevoEstado) {
+        this.estadoPedido = nuevoEstado;
+    }
 
     public final void ejecutarProceso(){
         mostrarResumen();
@@ -62,9 +52,15 @@ public abstract class Pedidos {
     }
     public void mostrarResumen(){
         System.out.println("Mostrar Datos Del Pedido:");
-        System.out.println("Pedido" + getTipodepedido());
+        System.out.println("ID Del Pedido:" + idpedido);
+        System.out.println("Pedido" + tipodepedido);
         System.out.println("Dirrecion: " + dirrecionEntrega);
         System.out.println("distancia: " + distanciakm + "km");
+        if (this.repartidorAsignado != null) {
+            System.out.println("Repartidor: " + this.repartidorAsignado.getNombre());
+        } else {
+            System.out.println("Repartidor: aun no ha sido asignado");
+        }
     }
     protected abstract void calcularTiempoEntrega();
 }
